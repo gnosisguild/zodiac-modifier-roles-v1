@@ -203,11 +203,13 @@ library Permissions {
         address to;
         uint256 value;
         bytes memory out;
-        uint256 dataLength;
 
         uint256 offset;
+        uint256 length;
         assembly {
             offset := mload(add(data, 36))
+            // 4 (selector) + 32 (offset) + 32 (length) + unpadded inner payload
+            length := add(100, mload(add(68, data)))
         }
         if (offset != 32) {
             revert UnacceptableMultiSendOffset();
@@ -217,7 +219,8 @@ library Permissions {
         // 4 bytes (multisend_id) + 32 bytes (offset_multisend_data) + 32 bytes multisend_data_length
         // increment i by the transaction data length
         // + 85 bytes of the to, value, and operation bytes until we reach the end of the data
-        for (uint256 i = 100; i < data.length; i += (85 + dataLength)) {
+        uint256 entryLength;
+        for (uint256 i = 100; i < length; i += (85 + entryLength)) {
             assembly {
                 // First byte of the data is the operation.
                 // We shift by 248 bits (256 - 8 [operation byte]) right since mload will always load 32 bytes (a word).
@@ -229,7 +232,7 @@ library Permissions {
                 // We offset the load address by 21 byte (operation byte + 20 address bytes)
                 value := mload(add(data, add(i, 0x15)))
                 // We offset the load address by 53 byte (operation byte + 20 address bytes + 32 value bytes)
-                dataLength := mload(add(data, add(i, 0x35)))
+                entryLength := mload(add(data, add(i, 0x35)))
                 // We offset the load address by 85 byte (operation byte + 20 address bytes + 32 value bytes + 32 data length bytes)
                 out := add(data, add(i, 0x35))
             }

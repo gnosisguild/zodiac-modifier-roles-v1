@@ -9,7 +9,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
@@ -17,8 +17,3 @@ jobs:
       - run: yarn build
       - run: yarn test
       - run: yarn coverage
-      - name: Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: packages/evm/coverage/lcov.info
