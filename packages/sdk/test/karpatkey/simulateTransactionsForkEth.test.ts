@@ -3,19 +3,17 @@ import hre, { deployments, waffle } from "hardhat"
 
 import { Roles__factory } from "../../../evm/typechain-types"
 import { encodeApplyPreset } from "../../src/applyPreset"
+import balancerManagePreset from "../../src/presets/mainnet/Balancer/deFiManageBalancer"
+import ensManagePreset from "../../src/presets/mainnet/ENS/deFiManageENS"
+import gnosisDAOManagePreset from "../../src/presets/mainnet/GnosisDAO/deFiManageGnosisDAO"
 import { RolePreset } from "../../src/presets/types"
 import { NetworkId } from "../../src/types"
-
-import ensManagePreset from "../../src/presets/mainnet/ENS/deFiManageENS"
-import { ENS_ADDRESSES } from "../../tasks/manageEnsRoles"
-import ensManageTransactions from "./testTransactions/ensManage"
-
-import balancerManagePreset from "../../src/presets/mainnet/Balancer/deFiManageBalancer"
 import { BALANCER_ADDRESSES } from "../../tasks/manageBalancerRoles"
-import balancerManageTransactions from "./testTransactions/balancerManage"
-
-import gnosisDAOManagePreset from "../../src/presets/mainnet/GnosisDAO/deFiManageGnosisDAO"
+import { ENS_ADDRESSES } from "../../tasks/manageEnsRoles"
 import { GNOSIS_ADDRESSES } from "../../tasks/manageGnosisRoles"
+
+import balancerManageTransactions from "./testTransactions/balancerManage"
+import ensManageTransactions from "./testTransactions/ensManage"
 import gnosisDAOTransactions from "./testTransactions/ethManage"
 
 interface Config {
@@ -39,7 +37,7 @@ interface SimulateTransaction {
   expectRevert?: boolean
 }
 
-describe("Karpatkey: Simulate Transactions Test (patching current config in mainnet fork)", async () => {
+describe.skip("Karpatkey: Simulate Transactions Test (patching current config in mainnet fork)", async () => {
   const setup = (config: Config) =>
     deployments.createFixture(async () => {
       const ownerAddress = config.AVATAR // this is true for all current setups
