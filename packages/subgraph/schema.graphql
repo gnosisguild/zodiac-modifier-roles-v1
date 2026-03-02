@@ -24,7 +24,7 @@ enum ParameterComparison {
   OneOf
 }
 
-type Role @entity {
+type Role @entity(immutable: false) {
   id: ID! # Global unique id for role in subgraph
   name: String!
   rolesModifier: RolesModifier!
@@ -33,7 +33,7 @@ type Role @entity {
   members: [RoleAssignment!] @derivedFrom(field: "role")
 }
 
-type Target @entity {
+type Target @entity(immutable: false) {
   id: ID!
   role: Role!
   address: Bytes!
@@ -42,7 +42,7 @@ type Target @entity {
   functions: [Function!] @derivedFrom(field: "target")
 }
 
-type Function @entity {
+type Function @entity(immutable: false) {
   id: ID!
   target: Target
   sighash: Bytes!
@@ -51,7 +51,7 @@ type Function @entity {
   parameters: [Parameter!] @derivedFrom(field: "owningFunction")
 }
 
-type Parameter @entity {
+type Parameter @entity(immutable: false) {
   id: ID!
   owningFunction: Function!
   index: Int!
@@ -60,20 +60,20 @@ type Parameter @entity {
   comparisonValue: [Bytes!]! # Will contain only one value except for oneOf where is an array
 }
 
-type Member @entity {
+type Member @entity(immutable: false) {
   id: ID!
   address: Bytes!
   enabledAsModule: Boolean!
   roles: [RoleAssignment!] @derivedFrom(field: "member")
 }
 
-type RoleAssignment @entity {
+type RoleAssignment @entity(immutable: false) {
   id: ID!
   member: Member!
   role: Role!
 }
 
-type RolesModifier @entity {
+type RolesModifier @entity(immutable: false) {
   id: ID!
   address: Bytes!
   owner: Bytes!

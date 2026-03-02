@@ -1,21 +1,18 @@
 const SUBGRAPH = {
-  [1]: "https://airlock.gnosisguild.org/api/v1/subgraph/HYArYfPMEAawR5wFbr7qUVAgLbG9fpF91iwPVE6jKfLc",
+  [1]: "https://api.studio.thegraph.com/query/93263/zodiac-roles-mod-mainnet/latest",
 
   [11155111]:
-    "https://airlock.gnosisguild.org/api/v1/subgraph/B1xxjy8WBWLkEo2pD7PDHM2LHLAryMdoWiH4kHLL4buP",
-  // [10]: "https://airlock.gnosisguild.org/api/v1/subgraph/HMJik2c7BEXFy1gp7H3zK8TSqubzeGQ8sfZjgGbLJjwy",
-  [56]: "https://airlock.gnosisguild.org/api/v1/subgraph/7ffR3tdeVZ2SrHcnzCswBoqX7Zx4P4wkG9V6qEUomdU",
+    "https://api.studio.thegraph.com/query/93263/zodiac-roles-v1-sepolia/latest",
+  [56]: "https://api.studio.thegraph.com/query/93263/zodiac-roles-mod-bsc/latest",
   [100]:
-    "https://airlock.gnosisguild.org/api/v1/subgraph/9KdeUKvCupvXcRqbNt9HSX3idsiYdmt81XeAvffFEZA6",
+    "https://api.studio.thegraph.com/query/93263/zodiac-roles-mod-gnosis-chain/latest",
   [137]:
-    "https://airlock.gnosisguild.org/api/v1/subgraph/JDFgdGqUsDci3yv5HgEhFDFT65hmAtnnGgp4tN6nksGG",
+    "https://api.studio.thegraph.com/query/93263/zodiac-roles-mod-polygon/latest",
   [42161]:
-    "https://airlock.gnosisguild.org/api/v1/subgraph/5TLTw4whZvjbtQmzomRHJDrCX9VQ32mHSdrPN7oxdn4v",
+    "https://api.studio.thegraph.com/query/93263/zodiac-roles-mod-arbitrum/version/latest",
 
   [8453]:
-    "https://airlock.gnosisguild.org/api/v1/subgraph/DJTPvUAk3iyZzDhXhoFwH18qiUJDyS4LXDU9EfWBLEWB",
-  // [43114]:
-  //   "https://airlock.gnosisguild.org/api/v1/subgraph/6pVVa2Q53HRqQahiZLovV5AUN48nK28Cym6TRbw4ABP8",
+    "https://api.studio.thegraph.com/query/93263/zodiac-roles-v1-base/version/latest",
 }
 
 export default SUBGRAPH
