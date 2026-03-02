@@ -55,6 +55,12 @@ const fetchPermissions = async ({
     }),
   })
   const { data, error } = await res.json()
+  console.log(
+    data,
+    error,
+    SUBGRAPH[network],
+    `${address.toLowerCase()}-ROLE-${roleId}.0`
+  )
   if (error) {
     throw new Error(error)
   }

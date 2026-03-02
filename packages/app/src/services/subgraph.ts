@@ -17,65 +17,20 @@ import { Network } from "../utils/networks"
 
 let client
 
-if (!process.env.REACT_APP_SUBGRAPH_BASE_URL) {
-  throw new Error("REACT_APP_SUBGRAPH_BASE_URL is not set")
-}
-if (!process.env.REACT_APP_SUBGRAPH_GNOSIS_CHAIN) {
-  throw new Error("REACT_APP_SUBGRAPH_GNOSIS_CHAIN is not set")
-}
-if (!process.env.REACT_APP_SUBGRAPH_MAINNET) {
-  throw new Error("REACT_APP_SUBGRAPH_MAINNET is not set")
-}
-if (!process.env.REACT_APP_SUBGRAPH_SEPOLIA) {
-  throw new Error("REACT_APP_SUBGRAPH_SEPOLIA is not set")
-}
-if (!process.env.REACT_APP_SUBGRAPH_POLYGON) {
-  throw new Error("REACT_APP_SUBGRAPH_POLYGON is not set")
-}
-if (!process.env.REACT_APP_SUBGRAPH_ARBITRUM) {
-  throw new Error("REACT_APP_SUBGRAPH_ARBITRUM is not set")
-}
-if (!process.env.REACT_APP_SUBGRAPH_OPTIMISM) {
-  throw new Error("REACT_APP_SUBGRAPH_OPTIMISM is not set")
-}
-if (!process.env.REACT_APP_SUBGRAPH_BASE) {
-  throw new Error("REACT_APP_SUBGRAPH_BASE is not set")
-}
-// if (!process.env.REACT_APP_SUBGRAPH_OPTIMISM_ON_GNOSIS_CHAIN) {
-//   throw new Error("REACT_APP_SUBGRAPH_OPTIMISM_ON_GNOSIS_CHAIN is not set")
-// }
+const SUBGRAPH = {
+  1: "https://api.studio.thegraph.com/query/93263/zodiac-roles-mod-mainnet/latest",
 
-const BASE_SUBGRAPH_URL = process.env.REACT_APP_SUBGRAPH_BASE_URL
-const SUBGRAPH_GNOSIS_CHAIN = process.env.REACT_APP_SUBGRAPH_GNOSIS_CHAIN
-const SUBGRAPH_SEPOLIA = process.env.REACT_APP_SUBGRAPH_SEPOLIA
-const SUBGRAPH_MAINNET = process.env.REACT_APP_SUBGRAPH_MAINNET
-const SUBGRAPH_POLYGON = process.env.REACT_APP_SUBGRAPH_POLYGON
-const SUBGRAPH_ARBITRUM = process.env.REACT_APP_SUBGRAPH_ARBITRUM
-const SUBGRAPH_OPTIMISM = process.env.REACT_APP_SUBGRAPH_OPTIMISM
-const SUBGRAPH_BASE = process.env.REACT_APP_SUBGRAPH_BASE
-// const SUBGRAPH_OPTIMISM_ON_GNOSIS_CHAIN = process.env.REACT_APP_SUBGRAPH_OPTIMISM_ON_GNOSIS_CHAIN
+  11155111: "https://api.studio.thegraph.com/query/93263/zodiac-roles-v1-sepolia/latest",
+  56: "https://api.studio.thegraph.com/query/93263/zodiac-roles-mod-bsc/latest",
+  100: "https://api.studio.thegraph.com/query/93263/zodiac-roles-mod-gnosis-chain/latest",
+  137: "https://api.studio.thegraph.com/query/93263/zodiac-roles-mod-polygon/latest",
+  42161: "https://api.studio.thegraph.com/query/93263/zodiac-roles-mod-arbitrum/version/latest",
+
+  8453: "https://api.studio.thegraph.com/query/93263/zodiac-roles-v1-base/version/latest",
+}
 
 const getUrl = (network?: Network) => {
-  switch (network) {
-    case Network.MAINNET:
-      return BASE_SUBGRAPH_URL + SUBGRAPH_MAINNET
-    case Network.GNOSIS:
-      return BASE_SUBGRAPH_URL + SUBGRAPH_GNOSIS_CHAIN
-    case Network.SEPOLIA:
-      return BASE_SUBGRAPH_URL + SUBGRAPH_SEPOLIA
-    case Network.POLYGON:
-      return BASE_SUBGRAPH_URL + SUBGRAPH_POLYGON
-    case Network.OPTIMISM:
-      return BASE_SUBGRAPH_URL + SUBGRAPH_OPTIMISM
-    case Network.ARBITRUM:
-      return BASE_SUBGRAPH_URL + SUBGRAPH_ARBITRUM
-    case Network.BASE:
-      return BASE_SUBGRAPH_URL + SUBGRAPH_BASE
-    // case Network.OPTIMISM_ON_GNOSIS:
-    //   return BASE_SUBGRAPH_URL + SUBGRAPH_OPTIMISM_ON_GNOSIS_CHAIN
-    default:
-      return BASE_SUBGRAPH_URL + SUBGRAPH_SEPOLIA
-  }
+  return network && network in SUBGRAPH ? SUBGRAPH[network as keyof typeof SUBGRAPH] : SUBGRAPH[11155111]
 }
 
 const getSubgraphClient = (network?: Network) =>
