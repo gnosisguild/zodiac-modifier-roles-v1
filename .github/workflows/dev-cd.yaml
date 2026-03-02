@@ -15,16 +15,6 @@ env:
   REACT_APP_BASESCAN_KEY: EP2HURF81GKBPX1RQ37T91Z2WXKH4FT78Q
   REACT_APP_INFURA_KEY: 0de1a96486754f8b98f284d093905198
   REACT_APP_ONBOARD_JS_DAPP_ID: 30fd8cd4-93a1-4c0e-a463-b5eceb9a3956
-  REACT_APP_SUBGRAPH_BASE_URL: https://airlock.gnosisguild.org/api/v1/subgraph/
-  REACT_APP_SUBGRAPH_SEPOLIA: B1xxjy8WBWLkEo2pD7PDHM2LHLAryMdoWiH4kHLL4buP
-  REACT_APP_SUBGRAPH_GNOSIS_CHAIN: 9KdeUKvCupvXcRqbNt9HSX3idsiYdmt81XeAvffFEZA6
-  REACT_APP_SUBGRAPH_MAINNET: HYArYfPMEAawR5wFbr7qUVAgLbG9fpF91iwPVE6jKfLc
-  REACT_APP_SUBGRAPH_POLYGON: JDFgdGqUsDci3yv5HgEhFDFT65hmAtnnGgp4tN6nksGG
-  REACT_APP_SUBGRAPH_ARBITRUM: 5TLTw4whZvjbtQmzomRHJDrCX9VQ32mHSdrPN7oxdn4v
-  REACT_APP_SUBGRAPH_OPTIMISM: HMJik2c7BEXFy1gp7H3zK8TSqubzeGQ8sfZjgGbLJjwy
-  REACT_APP_SUBGRAPH_AVALANCHE: 6pVVa2Q53HRqQahiZLovV5AUN48nK28Cym6TRbw4ABP8
-  REACT_APP_SUBGRAPH_BSC: 7ffR3tdeVZ2SrHcnzCswBoqX7Zx4P4wkG9V6qEUomdU
-  REACT_APP_SUBGRAPH_BASE: DJTPvUAk3iyZzDhXhoFwH18qiUJDyS4LXDU9EfWBLEWB
 
 jobs:
   deploy:
@@ -34,7 +24,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 16
+          node-version: 24
       - run: npm install -g yarn
       - run: yarn install --frozen-lockfile
       - run: yarn build
